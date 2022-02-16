@@ -1,0 +1,47 @@
+name: Spacechat PR CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  actions-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cschleiden/actions-linter@v1
+        with:
+          workflows: '[".github/workflows/*.yml"]'
+
+  js-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run check
+
+  suggest-lint-fixes:
+    runs-on: ubuntu-latest
+    if: always() && (needs['js-lint'].result == 'failure')
+    needs: ['js-lint']
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: 'npm'
+      - run: npm ci
+      - name: Format and create comments with suggestions
+        run: npm run format
+      - uses: getsentry/action-git-diff-suggestions@main
+        with:
+          message: 'Your code could be _Prettier_ heheh'
