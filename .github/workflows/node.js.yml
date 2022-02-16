@@ -30,6 +30,7 @@ jobs:
   fix-lints:
     runs-on: ubuntu-latest
     if: always() && (needs['js-lint'].result == 'failure')
+    needs: ['js-lint']
 
     steps:
       - uses: actions/checkout@v2
