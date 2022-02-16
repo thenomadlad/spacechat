@@ -27,9 +27,10 @@ jobs:
       - name: Format and create comments with suggestions
         if: ${{ failure() }}
         run: npm run format
-      - uses: devops-infra/action-commit-push@v0.5
+      - uses: actions-js/action-commit-push@v1.3
         if: ${{ failure() }}
         with:
+          github_token: '${{ secrets.GITHUB_TOKEN }}'
           commit_message: 'Made your code *Prettier* heheh'
           force: false
           target_branch: ${{ github.head_ref }}
