@@ -30,7 +30,6 @@ jobs:
       - uses: devops-infra/action-commit-push@v0.5
         if: ${{ failure() }}
         with:
-          github_token: '${{ secrets.GITHUB_TOKEN }}'
           commit_message: 'Made your code *Prettier* heheh'
           force: false
           target_branch: ${{ github.head_ref }}
