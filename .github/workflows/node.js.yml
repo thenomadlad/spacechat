@@ -4,28 +4,28 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
 jobs:
-  build:
-
+  lint:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 16.x
       uses: actions/setup-node@v2
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 16.x
         cache: 'npm'
     - run: npm ci
     - run: npm run lint
     - run: npm run check
+
+    - name: Format and create comments with suggestions
+      if: ${{ failure() }}
+      run: npm run format
+    - uses: getsentry/action-git-diff-suggestions@main
+      if: ${{ failure() }}
+      with:
+        message: 'Your code could be _Prettier_ heheh'
