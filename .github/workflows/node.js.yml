@@ -33,4 +33,4 @@ jobs:
           github_token: '${{ secrets.GITHUB_TOKEN }}'
           commit_message: 'Made your code *Prettier* heheh'
           force: false
-          target_branch: '${{ env.GITHUB_REF_NAME }}'
+          target_branch: ${{ github.head_ref }}
