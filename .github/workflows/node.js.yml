@@ -27,7 +27,7 @@ jobs:
       - name: Format and create comments with suggestions
         if: ${{ failure() }}
         run: npm run format
-      - uses: dciborow/commit@0.0.2
+      - uses: github-actions-x/commit@v2.8
         if: ${{ failure() }}
         with:
           github-token: '${{ secrets.GITHUB_TOKEN }}'
