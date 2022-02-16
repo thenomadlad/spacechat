@@ -27,7 +27,7 @@ jobs:
       - name: Format and create comments with suggestions
         if: ${{ failure() }}
         run: npm run format
-      - uses: actions-js/action-commit-push@v1.3
+      - uses: actions-js/push@v1.3
         if: ${{ failure() }}
         with:
           github_token: '${{ secrets.GITHUB_TOKEN }}'
