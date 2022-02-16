@@ -31,7 +31,6 @@ jobs:
         if: ${{ failure() }}
         with:
           github_token: '${{ secrets.GITHUB_TOKEN }}'
-          add_timestamp: true
           commit_message: 'Made your code *Prettier* heheh'
           force: false
-          target_branch: $GITHUB_REF_NAME
+          target_branch: '${{ GITHUB_REF_NAME }}'
