@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let username;
+  export let username: string;
 </script>
 
 <div class="ml-3 relative">
