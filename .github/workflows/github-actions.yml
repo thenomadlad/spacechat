@@ -11,3 +11,4 @@ jobs:
       - uses: cschleiden/actions-linter@v1
         with:
           workflows: '[".github/workflows/*.yaml"]'
+++ b/.github/workflows/node.js.yml
