@@ -27,7 +27,7 @@ jobs:
       - run: npm run lint
       - run: npm run check
 
-  fix-lints:
+  suggest-lint-fixes:
     runs-on: ubuntu-latest
     if: always() && (needs['js-lint'].result == 'failure')
     needs: ['js-lint']
