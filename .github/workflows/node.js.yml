@@ -22,10 +22,16 @@ jobs:
       - run: npm run lint
       - run: npm run check
 
+      # ---
+      # cleaning up the code if it's a failure
       - name: Format and create comments with suggestions
         if: ${{ failure() }}
         run: npm run format
-      - uses: getsentry/action-git-diff-suggestions@main
+      - uses: devops-infra/action-commit-push@v0.5
         if: ${{ failure() }}
         with:
-          message: 'Your code could be _Prettier_ heheh'
+          github_token: '${{ secrets.GITHUB_TOKEN }}'
+          add_timestamp: true
+          commit_message: 'Made your code *Prettier* heheh'
+          force: false
+          target_branch: $GITHUB_REF_NAME
