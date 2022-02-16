@@ -27,10 +27,12 @@ jobs:
       - name: Format and create comments with suggestions
         if: ${{ failure() }}
         run: npm run format
-      - uses: github-actions-x/commit@v2.8
+      - uses: dciborow/commit@0.0.2
         if: ${{ failure() }}
         with:
           github-token: '${{ secrets.GITHUB_TOKEN }}'
           commit-message: 'Made your code *Prettier*'
           push-branch: ${{ github.head_ref }}
           rebase: true
+          name: "GhActionBot"
+          email: "noreply@nowhere.com"
