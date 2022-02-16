@@ -34,3 +34,5 @@ jobs:
           commit-message: 'Made your code *Prettier*'
           push-branch: ${{ github.head_ref }}
           rebase: true
+          name: "GhActionBot"
+          email: "noreply@nowhere.com"
