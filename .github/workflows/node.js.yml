@@ -27,10 +27,10 @@ jobs:
       - name: Format and create comments with suggestions
         if: ${{ failure() }}
         run: npm run format
-      - uses: actions-js/push@v1.3
+      - uses: github-actions-x/commit@v2.8
         if: ${{ failure() }}
         with:
-          github_token: '${{ secrets.GITHUB_TOKEN }}'
-          message: 'Made your code *Prettier* heheh'
-          force: false
-          branch: ${{ github.head_ref }}
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+          commit-message: 'Made your code *Prettier*'
+          push-branch: ${{ github.head_ref }}
+          rebase: true
