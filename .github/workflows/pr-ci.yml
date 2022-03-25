@@ -23,6 +23,7 @@ jobs:
         with:
           node-version: 16.x
           cache: 'npm'
+      - run: cd front
       - run: npm ci
       - run: npm run lint
       - run: npm run check
@@ -39,6 +40,7 @@ jobs:
         with:
           node-version: 16.x
           cache: 'npm'
+      - run: cd front
       - run: npm ci
       - name: Format and create comments with suggestions
         run: npm run format
