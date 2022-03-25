@@ -23,9 +23,13 @@ jobs:
         with:
           node-version: 16.x
           cache: 'npm'
+          cache-dependency-path: front/package-lock.json
       - run: npm ci
+        working-directory: ./front
       - run: npm run lint
+        working-directory: ./front
       - run: npm run check
+        working-directory: ./front
 
   suggest-lint-fixes:
     runs-on: ubuntu-latest
@@ -39,9 +43,12 @@ jobs:
         with:
           node-version: 16.x
           cache: 'npm'
+          cache-dependency-path: front/package-lock.json
       - run: npm ci
+        working-directory: ./front
       - name: Format and create comments with suggestions
         run: npm run format
+        working-directory: ./front
       - uses: getsentry/action-git-diff-suggestions@main
         with:
           message: 'Your code could be _Prettier_ heheh'
