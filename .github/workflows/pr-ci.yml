@@ -18,12 +18,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - run: cd front
       - name: Use Node.js 16.x
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
           cache: 'npm'
-      - run: cd front
       - run: npm ci
       - run: npm run lint
       - run: npm run check
@@ -35,12 +35,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - run: cd front
       - name: Use Node.js 16.x
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
           cache: 'npm'
-      - run: cd front
       - run: npm ci
       - name: Format and create comments with suggestions
         run: npm run format
